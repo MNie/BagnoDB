@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: 'mongo:4.2.3'
+    environment:
+      - MONGO_INITDB_DATABASE=bagnoDBTest
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123
+    volumes:
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - .localDB:/data/db
+    ports:
+      - '27017-27019:27017-27019'
