@@ -10,10 +10,10 @@ async {
   let database = "bagnoDBTests"
 
   let config = {
-    Host = "0.0.0.0"
-    Port = 27017
-    User = Some "admin"
-    Password = Some "123"
+    host = "0.0.0.0"
+    port = 27017
+    user = Some "admin"
+    password = Some "123"
   }
   
   let! configuration =
