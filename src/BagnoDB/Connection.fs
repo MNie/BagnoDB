@@ -4,30 +4,30 @@ module BagnoDB.Connecting
 
     type Connection =
         {
-          Config: Config
-          Database: string option
-          Collection: string option
+          config: Config
+          database: string option
+          collection: string option
         }
 
     module Connection =
         let host config =
             {
-              Config = config
-              Database = None
-              Collection = None }
-        let database db op = { op with Database = Some db }
-        let collection col op = { op with Collection = Some col }
+              config = config
+              database = None
+              collection = None }
+        let database db op = { op with database = Some db }
+        let collection col op = { op with collection = Some col }
         let create config db col =
              {
-              Config = config
-              Database = Some db
-              Collection = Some col }
+              config = config
+              database = Some db
+              collection = Some col }
 
         let internal connect<'TModel> op =
-            let client = MongoClient (op.Config.GetConnectionString())
-            match op.Database with
+            let client = MongoClient (op.config.GetConnectionString())
+            match op.database with
             | Some dbName ->
-                match op.Collection with
+                match op.collection with
                 | Some col ->
                     let db = client.GetDatabase dbName
                     let collection = db.GetCollection<'TModel>(col)

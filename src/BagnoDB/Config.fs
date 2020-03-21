@@ -4,19 +4,19 @@ module BagnoDB.Configuring
 
     type Config =
         {
-            Host: string
-            Port: int
-            User: string option
-            Password: string option
+            host: string
+            port: int
+            user: string option
+            password: string option
         }
         member this.GetConnectionString () =
             let isEmpty s = String.IsNullOrWhiteSpace s
-            match this.Password, this.User with
+            match this.password, this.user with
             | None, None
             | None, Some _
             | Some _, None ->
-                sprintf "mongodb://%s:%d" this.Host this.Port
+                sprintf "mongodb://%s:%d" this.host this.port
             | Some pas, Some us when isEmpty pas || isEmpty us ->
-                sprintf "mongodb://%s:%d" this.Host this.Port
+                sprintf "mongodb://%s:%d" this.host this.port
             | Some pas, Some us ->
-                sprintf "mongodb://%s:%s@%s:%d" us pas this.Host this.Port
+                sprintf "mongodb://%s:%s@%s:%d" us pas this.host this.port

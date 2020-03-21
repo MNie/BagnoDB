@@ -25,10 +25,10 @@ module Tests
         let database = "bagnoDBTests"
 
         let config = {
-            Host = "0.0.0.0"
-            Port = 27017
-            User = Some "admin"
-            Password = Some "123"
+            host = "0.0.0.0"
+            port = 27017
+            user = Some "admin"
+            password = Some "123"
         }
         let bagno = { identifier = ObjectId.GenerateNewId (); data = "Bagno"; value = 2 }
         let mango = { identifier = ObjectId.GenerateNewId (); data = "mango"; value = 2137 }
