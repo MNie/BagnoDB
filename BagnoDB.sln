@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61981E66-6826-4EEA-BAB1-EFAD71B1BE32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB", "src\BagnoDB\BagnoDB.fsproj", "{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.IntegrationTests", "tests\BagnoDB.IntegrationTests\BagnoDB.IntegrationTests.fsproj", "{EABAA249-160A-40C2-81FD-29B3F6D44E4F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.Tests", "tests\BagnoDB.Tests\BagnoDB.Tests.fsproj", "{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41} = {61981E66-6826-4EEA-BAB1-EFAD71B1BE32}
+		{EABAA249-160A-40C2-81FD-29B3F6D44E4F} = {B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}
+		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1} = {B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EABAA249-160A-40C2-81FD-29B3F6D44E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EABAA249-160A-40C2-81FD-29B3F6D44E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABAA249-160A-40C2-81FD-29B3F6D44E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EABAA249-160A-40C2-81FD-29B3F6D44E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

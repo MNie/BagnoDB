@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>0.0.1</Version>
+        <Authors>Michał Niegrzybowski</Authors>
+        <Company>Michał Niegrzybowski - MNie</Company>
+        <PackageId>BagnoDB</PackageId>
+        <Product>BagnoDB</Product>
+        <Description>F# wrapper over MongoDB.Driver</Description>
+        <Copyright>Michał Niegrzybowski</Copyright>
+        <PackageLicense>https://github.com/MNie/BagnoDB/blob/master/LICENSE</PackageLicense>
+        <PackageProjectUrl>https://github.com/MNie/BagnoDB</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/MNie/BagnoDB</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>MongoDB, Functional Programming, FSharp, F#</PackageTags>
+        <DebugType>Full</DebugType>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="Config.fs" />
+      <Compile Include="Filter.fs" />
+      <Compile Include="Connection.fs" />
+      <Compile Include="Query.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
+    </ItemGroup>
+
+</Project>
