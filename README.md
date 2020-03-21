@@ -5,22 +5,20 @@ F# wrapper over MongoDB.Driver.
 ## How to build configuration.
 
 ```fsharp
-async {
-  let collection = "bagno"
-  let database = "bagnoDBTests"
+let collection = "bagno"
+let database = "bagnoDBTests"
 
-  let config = {
-    host = "0.0.0.0"
-    port = 27017
-    user = Some "admin"
-    password = Some "123"
-  }
-  
-  let! configuration =
-    Connection.host config
-    |> Connection.database database
-    |> Connection.collection collection
+let config = {
+  host = "0.0.0.0"
+  port = 27017
+  user = Some "admin"
+  password = Some "123"
 }
+  
+let configuration =
+  Connection.host config
+  |> Connection.database database
+  |> Connection.collection collection
 ```
 
 ## How to build filters.
