@@ -29,8 +29,8 @@ module BagnoDB.Filtering
         static member (|||) (first, second) =
             { definition = first.definition ||| second.definition }
 
-    type ExpressionHelper() =
-        static member AsExpression<'TItem, 'TField>(e: Expression<Func<'TItem, 'TField>>) = e
+    type Expression() =
+        static member Map<'TItem, 'TField>(e: Expression<Func<'TItem, 'TField>>) = e
 
     module Filter =
         let internal create<'TModel, 'TField> fOp =
