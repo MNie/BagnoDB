@@ -1,6 +1,5 @@
-module BagnoDB.Connecting
+namespace BagnoDB
     open MongoDB.Driver
-    open BagnoDB.Configuring
 
     type Connection =
         {

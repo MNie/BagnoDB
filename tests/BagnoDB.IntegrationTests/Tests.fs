@@ -7,10 +7,7 @@ module Tests
     open MongoDB.Bson.Serialization.Attributes
     open Xunit
     open Swensen.Unquote
-    open BagnoDB.Configuring
-    open BagnoDB.Connecting
-    open BagnoDB.Filtering
-    open BagnoDB.Querying
+    open BagnoDB
 
     [<BsonIgnoreExtraElements>]
     type BagnoTest = {

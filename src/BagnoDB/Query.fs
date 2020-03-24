@@ -1,7 +1,5 @@
-module BagnoDB.Querying
-    open BagnoDB.Connecting
+namespace BagnoDB
     open MongoDB.Driver
-    open BagnoDB.Filtering
 
     module Query =
         let getAll<'TModel> token (fOpt: FindOptions<'TModel>) con =

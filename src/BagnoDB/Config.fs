@@ -1,4 +1,4 @@
-module BagnoDB.Configuring
+namespace BagnoDB
 
     open System
 

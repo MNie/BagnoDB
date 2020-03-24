@@ -1,7 +1,7 @@
 module ConfigTests
     open Xunit
     open Swensen.Unquote
-    open BagnoDB.Configuring
+    open BagnoDB
 
     type ConnectionStringTests () =
         [<Fact>]

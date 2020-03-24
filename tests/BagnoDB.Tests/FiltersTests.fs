@@ -4,7 +4,7 @@ module FiltersTests
     open MongoDB.Bson
     open Xunit
     open Swensen.Unquote
-    open BagnoDB.Filtering
+    open BagnoDB
 
     type FakeModel =
         {

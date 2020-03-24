@@ -1,4 +1,4 @@
-module BagnoDB.Filtering
+namespace BagnoDB
 
     open System
     open MongoDB.Driver
