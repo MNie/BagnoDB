@@ -38,7 +38,7 @@ Additionally filters could be combine via:
 
 ```fsharp
 let filter =
-  Filter.eq (ExpressionHelper.AsExpression (fun (o: BagnoTest) -> o.data)) "Bagno"
+  Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.data)) "Bagno"
   |> (|||) (Filter.lt (ExpressionHelper.AsExpression (fun (o: BagnoTest) -> o.value)) 2137)
 ```
 
