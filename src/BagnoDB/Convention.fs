@@ -2,9 +2,9 @@ namespace BagnoDB
 
     open MongoDB.Bson.Serialization.Conventions
 
-    type Convention<'Conv> =
+    type Conventions =
         {
-            members: 'Conv list
+            members: IConvention list
         }
 
     module Conventions =
