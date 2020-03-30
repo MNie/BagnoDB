@@ -29,11 +29,8 @@ namespace BagnoDB
         static member (|||) (first, second) =
             { definition = first.definition ||| second.definition }
 
-    type Expression() =
-        static member Map<'TItem, 'TField>(e: Expression<Func<'TItem, 'TField>>) = e
-
-    module Filter =
-        let internal create<'TModel, 'TField> fOp =
+    type Filter () =
+        static member private create<'TModel, 'TField> fOp =
             let filter = FilterDefinitionBuilder<'TModel>()
 
             let translated =
@@ -46,25 +43,33 @@ namespace BagnoDB
                 | Not -> filter.Not(filter.Eq(fOp.field, fOp.value))
 
             { definition = translated }
-        let eq f v =
-            { operation = Eq; field = f; value = v }
-            |> create
-        let gt f v =
-            { operation = Greater; field = f; value = v }
-            |> create
-        let gte f v =
-            { operation = GreaterOrEqual; field = f; value = v }
-            |> create
-        let lt f v =
-            { operation = Less; field = f; value = v }
-            |> create
-        let lte f v =
-            { operation = LessOrEqual; field = f; value = v }
-            |> create
-        let not f v =
-            { operation = Not; field = f; value = v }
-            |> create
+        static member eq (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = Eq; field = f; value = v }
+                |> Filter.create
+        static member gt (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = Greater; field = f; value = v }
+                |> Filter.create
+        static member gte (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = GreaterOrEqual; field = f; value = v }
+                |> Filter.create
+        static member lt (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = Less; field = f; value = v }
+                |> Filter.create
+        static member lte (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = LessOrEqual; field = f; value = v }
+                |> Filter.create
+        static member not (f: Expression<Func<'TItem, 'TField>>) =
+            fun (v: 'TField) ->
+                { operation = Not; field = f; value = v }
+                |> Filter.create
 
+    [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+    module Filter =
         let ``and`` ``new`` previous =
             { previous with definition = previous.definition &&& ``new``.definition }
 

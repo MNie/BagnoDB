@@ -1,7 +1,6 @@
 module FiltersTests
 
     open MongoDB.Driver
-    open MongoDB.Bson
     open Xunit
     open Swensen.Unquote
     open BagnoDB

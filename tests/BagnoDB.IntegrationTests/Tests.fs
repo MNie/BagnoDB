@@ -35,7 +35,7 @@ module Tests
         [<Fact>]
         let ``filter with single parameter, return bagno`` () =
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.value)) 2
+                Filter.eq (fun (o: BagnoTest) -> o.value) 2
             let filterOpt = FindOptions<BagnoTest>()
             async {
                 let! result =
@@ -72,23 +72,31 @@ module Tests
         [<Fact>]
         let ``upsert, update mango to the idaho`` () =
             let newElement = { mango with data = "idaho" }
+            let f d = d.value
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.value)) mango.value
+                Filter.eq ((fun (x: BagnoTest) -> x.value)) mango.value
+            let findOpt = FindOptions<BagnoTest>()
             let filterOpt = FindOneAndReplaceOptions<BagnoTest>()
             async {
-                let! result =
+                let! _ =
                     Connection.host config
                     |> Connection.database database
                     |> Connection.collection collection
                     |> Query.upsert CancellationToken.None filterOpt newElement filter
 
-                result =! newElement
+                let! updatedResult =
+                    Connection.host config
+                    |> Connection.database database
+                    |> Connection.collection collection
+                    |> Query.filter CancellationToken.None findOpt filter
+
+                updatedResult.ToArray () =! [| newElement |]
             } |> Async.StartAsTask
 
         [<Fact>]
         let ``delete, delete mathching record (mango)`` () =
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.value)) mango.value
+                Filter.eq (fun (o: BagnoTest) -> o.value) mango.value
             let filterOpt = FindOneAndDeleteOptions<BagnoTest>()
             async {
                 let! result =
@@ -103,8 +111,8 @@ module Tests
         [<Fact>]
         let ``delete many, delete bagno i tango and keep mango in db`` () =
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.data)) "Bagno"
-                |> (|||) (Filter.lt (Expression.Map (fun (o: BagnoTest) -> o.value)) 2137)
+                Filter.eq (fun (o: BagnoTest) -> o.data) "Bagno"
+                |> (|||) (Filter.lt (fun (o: BagnoTest) -> o.value) 2137)
             let deleteOpt = DeleteOptions()
             async {
                 let! result =
@@ -119,8 +127,8 @@ module Tests
         [<Fact>]
         let ``filter with two parameters, return mango`` () =
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.data)) "mango"
-                |> (&&&) (Filter.gte (Expression.Map (fun (o: BagnoTest) -> o.value)) 2137)
+                Filter.eq (fun (o: BagnoTest) -> o.data) "mango"
+                |> (&&&) (Filter.gte (fun (o: BagnoTest) -> o.value) 2137)
             let filterOpt = FindOptions<BagnoTest>()
             async {
                 let! result =
@@ -135,8 +143,8 @@ module Tests
         [<Fact>]
         let ``filter with two parameters that should return 0 results`` () =
             let filter =
-                Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.value)) 2
-                |> Filter.``and`` (Filter.not (Expression.Map (fun (o: BagnoTest) -> o.data)) "Bagno")
+                Filter.eq (fun (o: BagnoTest) -> o.value) 2
+                |> Filter.``and`` (Filter.not (fun (o: BagnoTest) -> o.data) "Bagno")
             let filterOpt = FindOptions<BagnoTest>()
             async {
                 let! result =
