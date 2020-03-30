@@ -38,7 +38,7 @@ Additionally filters could be combine via:
 
 ```fsharp
 let filter =
-  Filter.eq (Expression.Map (fun (o: BagnoTest) -> o.data)) "Bagno"
+  Filter.eq (fun (o: BagnoTest) -> o.data) "Bagno"
   |> (|||) (Filter.lt (ExpressionHelper.AsExpression (fun (o: BagnoTest) -> o.value)) 2137)
 ```
 
@@ -54,7 +54,7 @@ Available options:
 - `getAll` - get all results based on passed filter options.
 
 ```fsharp
-let filter = Filter.eq (ExpressionHelper.AsExpression (fun (o: BagnoTest) -> o.data)) "mango"
+let filter = Filter.eq (fun (o: BagnoTest) -> o.data) "mango"
 let filterOpt = FindOptions<BagnoTest>()
 async {
   let! result =
