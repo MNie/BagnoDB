@@ -4,7 +4,7 @@ namespace BagnoDB
     open MongoDB.Driver
     open System.Linq.Expressions
 
-    type Operation =
+    type internal Operation =
         | Eq
         | Greater
         | GreaterOrEqual
