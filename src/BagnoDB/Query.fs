@@ -1,4 +1,6 @@
 namespace BagnoDB
+    open System
+    open System.Linq.Expressions
     open MongoDB.Driver
 
     module Query =
@@ -30,7 +32,13 @@ namespace BagnoDB
                 do! connection.InsertManyAsync (docs, iOpt, token) |> Async.AwaitTask
             }
 
-        let upsert<'TModel> token (uOpt: FindOneAndReplaceOptions<'TModel>) doc (fOp: Filter<'TModel>) con =
+        let update<'TModel> token (uOpt: FindOneAndUpdateOptions<'TModel>) doc (fOp: Filter<'TModel>) con =
+            let connection = Connection.connect<'TModel> con
+            async {
+                return! connection.FindOneAndUpdateAsync(fOp.definition, doc, uOpt, token) |> Async.AwaitTask
+            }
+
+        let updateWhole<'TModel> token (uOpt: FindOneAndReplaceOptions<'TModel>) doc (fOp: Filter<'TModel>) con =
             let connection = Connection.connect<'TModel> con
             async {
                 return! connection.FindOneAndReplaceAsync(fOp.definition, doc, uOpt, token) |> Async.AwaitTask

@@ -10,6 +10,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.IntegrationTests", 
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.Tests", "tests\BagnoDB.Tests\BagnoDB.Tests.fsproj", "{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.Serializator", "src\BagnoDB.Serializator\BagnoDB.Serializator.fsproj", "{841FC25C-13F9-4FBA-BD05-CF38941F01BE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BagnoDB.Serializator.IntegrationTests", "tests\BagnoDB.Serializator.IntegrationTests\BagnoDB.Serializator.IntegrationTests.fsproj", "{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,8 @@ Global
 		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41} = {61981E66-6826-4EEA-BAB1-EFAD71B1BE32}
 		{EABAA249-160A-40C2-81FD-29B3F6D44E4F} = {B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}
 		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1} = {B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}
+		{841FC25C-13F9-4FBA-BD05-CF38941F01BE} = {61981E66-6826-4EEA-BAB1-EFAD71B1BE32}
+		{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B} = {B04C2AAB-FB89-4B5E-99BC-0893A4F86FA1}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{35DCDF1F-52F8-41C6-80DC-0AEE9DF28D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,5 +39,13 @@ Global
 		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98DFF284-777A-4EFF-B27D-00BDE3B5BAF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841FC25C-13F9-4FBA-BD05-CF38941F01BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841FC25C-13F9-4FBA-BD05-CF38941F01BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841FC25C-13F9-4FBA-BD05-CF38941F01BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841FC25C-13F9-4FBA-BD05-CF38941F01BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB04ED69-D337-4BA9-A0FD-70C92F5EFB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

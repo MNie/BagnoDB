@@ -70,19 +70,20 @@ module Tests
             } |> Async.StartAsTask
 
         [<Fact>]
-        let ``upsert, update mango to the idaho`` () =
+        let ``updateWhole, update mango to the idaho`` () =
             let newElement = { mango with data = "idaho" }
-            let f d = d.value
+
             let filter =
                 Filter.eq ((fun (x: BagnoTest) -> x.value)) mango.value
             let findOpt = FindOptions<BagnoTest>()
             let filterOpt = FindOneAndReplaceOptions<BagnoTest>()
+            filterOpt.ReturnDocument <- ReturnDocument.After
             async {
                 let! _ =
                     Connection.host config
                     |> Connection.database database
                     |> Connection.collection collection
-                    |> Query.upsert CancellationToken.None filterOpt newElement filter
+                    |> Query.updateWhole CancellationToken.None filterOpt newElement filter
 
                 let! updatedResult =
                     Connection.host config

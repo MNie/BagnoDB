@@ -6,31 +6,31 @@
         <Version>0.0.8</Version>
         <Authors>Michał Niegrzybowski</Authors>
         <Company>Michał Niegrzybowski - MNie</Company>
-        <PackageId>BagnoDB</PackageId>
-        <Product>BagnoDB</Product>
-        <Description>F# wrapper over MongoDB.Driver</Description>
+        <PackageId>BagnoDB.Serializator</PackageId>
+        <Product>BagnoDB.Serializator</Product>
+        <Description>Bunch of serializers of F# types to MongoDB</Description>
         <Copyright>Michał Niegrzybowski</Copyright>
         <PackageLicense>https://github.com/MNie/BagnoDB/blob/master/LICENSE</PackageLicense>
         <PackageProjectUrl>https://github.com/MNie/BagnoDB</PackageProjectUrl>
         <RepositoryUrl>https://github.com/MNie/BagnoDB</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
-        <PackageTags>MongoDB, Functional Programming, FSharp, F#</PackageTags>
+        <PackageTags>MongoDB, Functional Programming, FSharp, F#, BagnoDB</PackageTags>
         <DebugType>Full</DebugType>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Config.fs" />
-      <Compile Include="Filter.fs" />
-      <Compile Include="Connection.fs" />
-      <Compile Include="Query.fs" />
-      <Compile Include="Serialization.fs" />
-      <Compile Include="Convention.fs" />
+        <Compile Include="Helpers.fs" />
+        <Compile Include="Conventions.fs" />
+        <Compile Include="DUSerializer.fs" />
+        <Compile Include="OptionSerializer.fs" />
+        <Compile Include="RecordSerializer.fs" />
+        <Compile Include="FSharpSerializationProvider.fs" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
+      <PackageReference Include="MongoDB.Bson" Version="2.10.2" />
     </ItemGroup>
 
 </Project>
