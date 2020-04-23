@@ -21,6 +21,21 @@ let configuration =
   |> Connection.collection collection
 ```
 
+## How to add conventions.
+
+```fsharp
+Conventions.create
+|> Conventions.add (OptionConvention ())
+|> Conventions.add (RecordConvention ())
+|> Conventions.build "F# Type Conventions"
+```
+
+## How to add serialization.
+
+```fsharp
+Serialization.bson (BagnoSerializationProvider ())
+```
+
 ## How to build filters.
 
 Available options:
@@ -39,7 +54,7 @@ Additionally filters could be combine via:
 ```fsharp
 let filter =
   Filter.eq (fun (o: BagnoTest) -> o.data) "Bagno"
-  |> (|||) (Filter.lt (ExpressionHelper.AsExpression (fun (o: BagnoTest) -> o.value)) 2137)
+  |> (|||) (Filter.lt (fun (o: BagnoTest) -> o.value) 2137)
 ```
 
 ## How to run query against MongoDB
@@ -66,3 +81,18 @@ async {
   return result
 } |> Async.StartAsTask
 ```
+
+# BagnoDB.Serializator
+
+Inspired by [this old lib](https://github.com/NamelessInteractive/NamelessInteractive.FSharp/tree/master/NamelessInteractive.FSharp.MongoDB) which seems to be not maintain any more.
+
+## Available conventions:
+
+- [Option](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options),
+- [Record](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/records).
+
+## Available serializers:
+
+- [Option](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options),
+- [Discriminated Unions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions),
+- [Record](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/records).
