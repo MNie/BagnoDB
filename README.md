@@ -1,4 +1,4 @@
-# BagnoDB
+# BagnoDB [![NuGet](https://buildstats.info/nuget/BagnoDB?includePreReleases=true)](https://www.nuget.org/packages/BagnoDB)
 
 F# wrapper over MongoDB.Driver.
 
