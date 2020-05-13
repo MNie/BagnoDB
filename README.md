@@ -1,4 +1,10 @@
-# BagnoDB [![NuGet](https://buildstats.info/nuget/BagnoDB?includePreReleases=true)](https://www.nuget.org/packages/BagnoDB)
+# BagnoDB 
+* NuGet Status
+
+    |   | BagnoDB | BagnoDB.Serializator |
+    |---|---|---|
+    | nuget | [![NuGet](https://buildstats.info/nuget/BagnoDB?includePreReleases=true)](https://www.nuget.org/packages/BagnoDB) | [![NuGet](https://buildstats.info/nuget/BagnoDB.Serializator?includePreReleases=true)](https://www.nuget.org/packages/BagnoDB.Serializator) |
+
 
 F# wrapper over MongoDB.Driver.
 
