@@ -21,8 +21,8 @@ type OptionSerializer<'TOption when 'TOption: equality>() =
 
         let (case, args) =
             let value =
-                if typeOfArg.IsPrimitive 
-                    || (typeOfArg = typeof<decimal> && context.Reader.CurrentBsonType = MongoDB.Bson.BsonType.Null) then
+                let isDecimalValueNull = (typeOfArg = typeof<decimal> && context.Reader.CurrentBsonType = BsonType.Null)
+                if typeOfArg.IsPrimitive || isDecimalValueNull then
                     BsonSerializer.Deserialize(context.Reader, typeof<obj>)
                 else
                     BsonSerializer.Deserialize(context.Reader, typeOfArg)
