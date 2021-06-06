@@ -1,6 +1,7 @@
 namespace BagnoDB.Serializator.Tests
 
 open System.Threading
+open System
 open Xunit
 open Swensen.Unquote
 open BagnoDB
@@ -45,7 +46,22 @@ type SmallestPossibleRecord =
         Foo: Union
     }
 
+type RecordOfOptionTypes = {
+    Boolean: bool option
+    Decimal: decimal option
+    float: float option
+    Int32: Int32 option
+    Int64: Int64 option
+}
+
 type SerializatorTests() =
+    do 
+        Serialization.bson (BagnoSerializationProvider ())
+        Conventions.create
+        |> Conventions.add (OptionConvention ())
+        |> Conventions.add (RecordConvention ())
+        |> Conventions.build "F# Type Conventions"
+
     let database = "BagnoDB_Serializator_IntegrationTests"
 
     let config = {
@@ -61,14 +77,6 @@ type SerializatorTests() =
             Connection.host config
             |> Connection.database database
             |> Connection.collection collection
-
-        Conventions.create
-        |> Conventions.add (OptionConvention ())
-        |> Conventions.add (RecordConvention ())
-        |> Conventions.build "F# Type Conventions"
-
-        Serialization.bson (BagnoSerializationProvider ())
-
         connection
 
     [<Fact>]
@@ -134,6 +142,52 @@ type SerializatorTests() =
         let delOpt = DeleteOptions()
         let insOpt = InsertOneOptions()
         let filterOpt = FindOptions<SmallestPossibleRecord>()
+        async {
+            let! _ = con |> Query.deleteMany CancellationToken.None delOpt wildcard
+            do! con |> Query.insertOne CancellationToken.None insOpt testCase
+            let! saved = con |> Query.filter CancellationToken.None filterOpt wildcard
+            testCase =! (saved |> Seq.head)
+        } |> Async.RunSynchronously
+
+    [<Fact>]
+    member _.``record with optional type None should be serialized/deserialized correctly`` () =
+        let wildcard = Filter.empty
+        let testCase: RecordOfOptionTypes = {
+            Boolean = None
+            Decimal = None
+            float = None
+            Int32 = None
+            Int64 = None
+        }
+
+        let con = connection "RecordOptionType_None_Tests"
+        let delOpt = DeleteOptions()
+        let insOpt = InsertOneOptions()
+        let filterOpt = FindOptions<RecordOfOptionTypes>()
+
+        async {
+            let! _ = con |> Query.deleteMany CancellationToken.None delOpt wildcard
+            do! con |> Query.insertOne CancellationToken.None insOpt testCase
+            let! saved = con |> Query.filter CancellationToken.None filterOpt wildcard
+            testCase =! (saved |> Seq.head)
+        } |> Async.RunSynchronously
+
+    [<Fact>]
+    member _.``record with optional type fields all Some value should be serialized/deserialized correctly`` () =
+        let wildcard = Filter.empty
+        let testCase: RecordOfOptionTypes = {
+            Boolean = Some true
+            Decimal = Some 1M
+            float = Some 1.0
+            Int32 = Some 1
+            Int64 = Some 1L
+        }
+
+        let con = connection "RecordOptionType_Some_Tests"
+        let delOpt = DeleteOptions()
+        let insOpt = InsertOneOptions()
+        let filterOpt = FindOptions<RecordOfOptionTypes>()
+
         async {
             let! _ = con |> Query.deleteMany CancellationToken.None delOpt wildcard
             do! con |> Query.insertOne CancellationToken.None insOpt testCase
