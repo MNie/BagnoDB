@@ -53,6 +53,7 @@ type SerializatorTests() =
         port = 27017
         user = Some "admin"
         password = Some "123"
+        authDb = None
     }
 
     let connection (collection) =

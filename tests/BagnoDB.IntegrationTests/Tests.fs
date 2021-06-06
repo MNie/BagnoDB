@@ -26,6 +26,7 @@ module Tests
             port = 27017
             user = Some "admin"
             password = Some "123"
+            authDb = None
         }
         let bagno = { identifier = ObjectId.GenerateNewId (); data = "Bagno"; value = 2 }
         let mango = { identifier = ObjectId.GenerateNewId (); data = "mango"; value = 2137 }
